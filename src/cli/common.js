@@ -18,7 +18,7 @@ function cli(api){
     function pluckByType(messages, type){
         return messages.filter(function(message) {
             return message.type === type;
-        });        
+        });
     }
 
     /**
@@ -68,7 +68,7 @@ function cli(api){
      */
     function processFile(relativeFilePath, options) {
         var input = api.readFile(relativeFilePath),
-            result = CSSLint.verify(input, gatherRules(options)),
+            result = CSSLint.verify(input, gatherRules(options), api),
             formatter = CSSLint.getFormatter(options.format || "text"),
             messages = result.messages || [],
             output,
