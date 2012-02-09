@@ -27,6 +27,17 @@ cli({
             process.exit(code || 0);
         }
     },
+
+    isFile: function(name) {
+
+        try {
+            var stat = fs.statSync(name);
+            return stat.isFile();
+        } catch (ex) {
+            return false;
+        }
+
+    },
     
     isDirectory: function(name){
         return fs.statSync(name).isDirectory();
@@ -61,7 +72,7 @@ cli({
         traverse(dir, []);
 
         return files;
-    },    
+    },
 
     getWorkingDirectory: function() {
         return process.cwd();
@@ -72,7 +83,7 @@ cli({
     },
 
     readFile: function(filename){
-        return fs.readFileSync(filename, "utf-8");    
+        return fs.readFileSync(filename, "utf-8");
     }
 });
 
